@@ -1,0 +1,47 @@
+﻿@model List<Entidades.Invitado>
+@{
+    ViewData["Title"] = "Invitados";
+    var evento = ViewBag.Evento as Entidades.Evento;
+}
+
+<h2 class="mb-4">Invitados para: @evento?.Titulo</h2>
+
+<div class="mb-3">
+    <a asp-action="Crear" asp-route-eventoId="@evento?.Id" class="btn btn-primary me-2">
+        <i class="bi bi-person-plus"></i> Agregar invitado
+    </a>
+    <a asp-action="CargaMasiva" asp-route-eventoId="@evento?.Id" class="btn btn-secondary">
+        <i class="bi bi-upload"></i> Carga masiva
+    </a>
+    <a asp-controller="Evento" asp-action="Editar" asp-route-id="@evento?.Id" class="btn btn-link ms-3">
+        ← Volver al evento
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <p>No hay invitados cargados para este evento.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Nombre</th>
+                <th>Mayor de Edad</th>
+                <th>Confirmó Asistencia</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var invitado in Model)
+            {
+                <tr>
+                    <td>@invitado.NombreCompleto</td>
+                    <td>@(invitado.MayorDeEdad ? "Sí" : "No")</td>
+                    <td>@(invitado.ConfirmoAsistencia ? "Sí" : "No")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

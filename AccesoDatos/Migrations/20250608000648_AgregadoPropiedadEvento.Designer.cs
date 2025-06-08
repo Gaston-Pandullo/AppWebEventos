@@ -4,6 +4,7 @@ using AccesoDatos.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccesoDatos.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250608000648_AgregadoPropiedadEvento")]
+    partial class AgregadoPropiedadEvento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,17 +124,12 @@ namespace AccesoDatos.Migrations
             modelBuilder.Entity("Entidades.Invitado", b =>
                 {
                     b.HasOne("Entidades.Evento", "Evento")
-                        .WithMany("Invitados")
+                        .WithMany()
                         .HasForeignKey("EventoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Evento");
-                });
-
-            modelBuilder.Entity("Entidades.Evento", b =>
-                {
-                    b.Navigation("Invitados");
                 });
 #pragma warning restore 612, 618
         }

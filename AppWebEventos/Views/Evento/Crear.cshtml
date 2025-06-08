@@ -1,0 +1,50 @@
+﻿@model Entidades.Evento
+
+@{
+    ViewData["Title"] = "Crear Evento";
+}
+
+<h2>Crear Evento</h2>
+
+<form asp-action="Crear" method="post">
+    <div class="mb-3">
+        <label asp-for="Titulo" class="form-label">Título</label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Descripcion" class="form-label">Descripción</label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaEvento" class="form-label">Fecha y Hora del Evento</label>
+        <input asp-for="FechaEvento" class="form-control" type="datetime-local" />
+        <span asp-validation-for="FechaEvento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="UbicacionGoogleMaps" class="form-label">Ubicación (Google Maps)</label>
+        <input asp-for="UbicacionGoogleMaps" class="form-control" />
+        <span asp-validation-for="UbicacionGoogleMaps" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Direccion" class="form-label">Dirección</label>
+        <input asp-for="Direccion" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-1"></i> Crear evento
+    </button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

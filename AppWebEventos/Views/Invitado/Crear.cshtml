@@ -1,0 +1,93 @@
+﻿@* @model Entidades.Invitado
+
+@{
+    ViewData["Title"] = "Agregar Invitado";
+}
+
+<h2>Agregar Invitado</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var modelState in ViewData.ModelState.Values)
+            {
+                foreach (var error in modelState.Errors)
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            }
+        </ul>
+    </div>
+}
+
+<form asp-action="Crear" method="post">
+    <input type="hidden" name="EventoId" value="@Model.EventoId" />
+
+    <div class="mb-3">
+        <label asp-for="NombreCompleto" class="form-label">Nombre completo</label>
+        <input asp-for="NombreCompleto" class="form-control" />
+        <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-2">
+        <input asp-for="MayorDeEdad" class="form-check-input" type="checkbox" />
+        <label asp-for="MayorDeEdad" class="form-check-label">Es mayor de edad</label>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="ConfirmoAsistencia" class="form-check-input" type="checkbox" />
+        <label asp-for="ConfirmoAsistencia" class="form-check-label">Confirmó asistencia</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        <i class="bi bi-check-circle"></i> Agregar
+    </button>
+    <a asp-action="Index" asp-route-eventoId="@Model.EventoId" class="btn btn-secondary ms-2">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+} *@
+
+@* Alternativa con ViewModel*@
+@model AppWebEventos.ViewModels.InvitadoFormViewModel
+
+@{
+    ViewData["Title"] = "Agregar Invitado";
+}
+
+<h2>Agregar Invitado</h2>
+
+<form asp-action="Crear" method="post">
+    <input type="hidden" asp-for="EventoId" />
+
+    <div class="mb-3">
+        <label asp-for="NombreCompleto" class="form-label">Nombre completo</label>
+        <input asp-for="NombreCompleto" class="form-control" />
+        <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-2">
+        <input asp-for="MayorDeEdad" class="form-check-input" type="checkbox" />
+        <label asp-for="MayorDeEdad" class="form-check-label">Es mayor de edad</label>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="ConfirmoAsistencia" class="form-check-input" type="checkbox" />
+        <label asp-for="ConfirmoAsistencia" class="form-check-label">Confirmó asistencia</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        <i class="bi bi-check-circle"></i> Agregar
+    </button>
+    <a asp-action="Index" asp-route-eventoId="@Model.EventoId" class="btn btn-secondary ms-2">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

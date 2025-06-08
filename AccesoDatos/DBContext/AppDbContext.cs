@@ -15,5 +15,7 @@ namespace AccesoDatos.DBContext
             
         }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Evento> Eventos { get; set; }
+        public DbSet<Invitado> Invitados { get; set; }
     }
 }

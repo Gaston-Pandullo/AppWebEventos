@@ -1,0 +1,93 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Eventos";
+}
+
+<h2 class="mb-4">Lista de Eventos</h2>
+
+<a href="/Evento/Crear" class="btn btn-primary mb-3">
+    <i class="bi bi-plus-circle me-1"></i> Agregar Evento
+</a>
+
+<!-- Buscador -->
+<form method="get" asp-action="Index" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="filtro" class="form-control" placeholder="Buscar eventos..." value="@Model.Filtro" />
+        <button class="btn btn-outline-secondary" type="submit">
+            <i class="bi bi-search"></i> Buscar
+        </button>
+    </div>
+</form>
+
+<!-- Tabla de eventos activos -->
+<div class="table-responsive">
+    <h4>Eventos Activos</h4>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Dirección</th>
+                <th>Ubicación</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var evento in Model.Activos)
+            {
+                <tr>
+                    <td>@evento.Titulo</td>
+                    <td>@evento.Descripcion</td>
+                    <td>@evento.FechaEvento.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@evento.Direccion</td>
+                    <td><a href="@evento.UbicacionGoogleMaps" target="_blank">Ver ubicación</a></td>
+                    <td>
+                        <a href="/Evento/Editar/@evento.Id" class="btn btn-sm btn-warning me-2">
+                            <i class="bi bi-pencil-square"></i> Ver
+                        </a>
+
+                        @if (evento.FechaEvento <= DateTime.Now)
+                        {
+                            <form asp-action="MarcarComoRealizado" asp-controller="Evento" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@evento.Id" />
+                                <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('¿Deseás marcar este evento como realizado?');">
+                                    <i class="bi bi-check-circle"></i> Marcar como Realizado
+                                </button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Tabla de eventos realizados -->
+<div class="table-responsive mt-5">
+    <h4>Eventos Realizados</h4>
+    <table class="table table-bordered table-hover">
+        <thead class="table-success">
+            <tr>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Dirección</th>
+                <th>Ubicación</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var evento in Model.Realizados)
+            {
+                <tr>
+                    <td>@evento.Titulo</td>
+                    <td>@evento.Descripcion</td>
+                    <td>@evento.FechaEvento.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@evento.Direccion</td>
+                    <td><a href="@evento.UbicacionGoogleMaps" target="_blank">Ver ubicación</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

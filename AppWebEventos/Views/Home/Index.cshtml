@@ -1,8 +1,67 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Panel de administración";
+    var mesActual = DateTime.Now.ToString("MMMM yyyy");
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <h2 class="mb-4">Panel de administración</h2>
+    <h5 class="mb-4">Eventos: 2025</h5>
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Eventos pendientes:</h5>
+                    <p class="card-text fs-4">5</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Próximo evento:</h5>
+                    <p class="card-text">10/06/2025 - Congreso Anual</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-dark shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Eventos realizados:</h5>
+                    <p class="card-text fs-4">23</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* <div class="row mb-4">
+        <div class="col-md-3 d-grid mb-2">
+            <a href="/Evento" class="btn btn-outline-secondary">
+                <i class="bi bi-clock-history me-2"></i> Historial de Eventos
+            </a>
+        </div>
+        <div class="col-md-3 d-grid mb-2">
+            <a href="/Evento/Pendientes" class="btn btn-outline-warning">
+                <i class="bi bi-exclamation-circle me-2"></i> Eventos Pendientes
+            </a>
+        </div>
+        <div class="col-md-3 d-grid mb-2">
+            <a href="/Evento/Crear" class="btn btn-outline-success">
+                <i class="bi bi-calendar-plus me-2"></i> Agregar Evento
+            </a>
+        </div>
+    </div> *@
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Calendario - @mesActual</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-muted fst-italic">[Aquí irá un calendario visual]</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+

@@ -1,22 +1,77 @@
+/* Tamaño de fuente base */
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+/* Estilos generales para botones y formularios */
+.btn:focus, .btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Espaciado inferior del body */
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #fdfdfd;
+    font-family: "Segoe UI", sans-serif;
 }
+
+/* Encabezados */
+h1, h2, h3 {
+    color: #333;
+}
+
+/* Navegador lateral desplegable */
+.sidebar {
+    width: 60px;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+    .sidebar:hover {
+        width: 240px;
+    }
+
+.sidebar-title {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar ul {
+    padding-left: 0;
+}
+
+    .sidebar ul li a {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: padding-left 0.3s;
+        padding-left: 0.5rem;
+        font-size: 1rem;
+    }
+
+.sidebar:hover ul li a {
+    padding-left: 1rem;
+}
+
+.sidebar .link-text {
+    display: none;
+}
+
+.sidebar:hover .link-text {
+    display: inline;
+}
+
